@@ -1,17 +1,40 @@
 import { useTheme } from "@mui/material";
 import { ResponsiveBar } from "@nivo/bar";
 import { tokens } from "../theme";
-import { mockBarData as data } from "../data/mockData";
+
+// Sample data for student distribution across CS courses
+const sampleData = [
+  { course: "Algorithms", students: 120 },
+  { course: "Data Structures", students: 150 },
+  { course: "Machine Learning", students: 100 },
+  { course: "Artificial Intelligence", students: 75 },
+  { course: "Database Systems", students: 90 },
+  { course: "Operating Systems", students: 110 },
+];
 
 const BarChart = ({ isDashboard = false }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
+  // In the future, replace 'sampleData' with MongoDB API data
+  // Example:
+  // const [data, setData] = useState(sampleData);
+  // useEffect(() => {
+  //   fetchDataFromMongoDB();
+  // }, []);
+  // const fetchDataFromMongoDB = async () => {
+  //   try {
+  //     const response = await axios.get("your-mongodb-api-endpoint");
+  //     setData(response.data); // Assuming the response matches 'sampleData' format
+  //   } catch (error) {
+  //     console.error("Error fetching data from MongoDB:", error);
+  //   }
+  // };
+
   return (
     <ResponsiveBar
-      data={data}
+      data={sampleData}
       theme={{
-        // added
         axis: {
           domain: {
             line: {
@@ -39,8 +62,8 @@ const BarChart = ({ isDashboard = false }) => {
           },
         },
       }}
-      keys={["hot dog", "burger", "sandwich", "kebab", "fries", "donut"]}
-      indexBy="country"
+      keys={["students"]}
+      indexBy="course"
       margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
       padding={0.3}
       valueScale={{ type: "linear" }}
@@ -76,7 +99,7 @@ const BarChart = ({ isDashboard = false }) => {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: isDashboard ? undefined : "country", // changed
+        legend: isDashboard ? undefined : "Course", // Update legend label
         legendPosition: "middle",
         legendOffset: 32,
       }}
@@ -84,7 +107,7 @@ const BarChart = ({ isDashboard = false }) => {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: isDashboard ? undefined : "food", // changed
+        legend: isDashboard ? undefined : "Students Enrolled", // Update legend label
         legendPosition: "middle",
         legendOffset: -40,
       }}
@@ -121,7 +144,7 @@ const BarChart = ({ isDashboard = false }) => {
       ]}
       role="application"
       barAriaLabel={function (e) {
-        return e.id + ": " + e.formattedValue + " in country: " + e.indexValue;
+        return e.id + ": " + e.formattedValue + " students in course: " + e.indexValue;
       }}
     />
   );

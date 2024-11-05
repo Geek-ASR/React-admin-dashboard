@@ -1,12 +1,13 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
-import { mockDataInvoices } from "../../data/mockData";
+import { mockDataInvoices } from "../../data/mockData"; // Update the path as necessary
 import Header from "../../components/Header";
 
-const Invoices = () => {
+const Students = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  
   const columns = [
     { field: "id", headerName: "ID" },
     {
@@ -26,25 +27,30 @@ const Invoices = () => {
       flex: 1,
     },
     {
-      field: "cost",
-      headerName: "Cost",
+      field: "university",
+      headerName: "University",
       flex: 1,
-      renderCell: (params) => (
-        <Typography color={colors.greenAccent[500]}>
-          ${params.row.cost}
-        </Typography>
-      ),
     },
     {
-      field: "date",
-      headerName: "Date",
+      field: "college",
+      headerName: "College",
+      flex: 1,
+    },
+    {
+      field: "department",
+      headerName: "Department",
+      flex: 1,
+    },
+    {
+      field: "gradYear",
+      headerName: "Graduation Year",
       flex: 1,
     },
   ];
 
   return (
     <Box m="20px">
-      <Header title="INVOICES" subtitle="List of Invoice Balances" />
+      <Header title="STUDENTS" subtitle="List of Student Details" />
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -80,4 +86,4 @@ const Invoices = () => {
   );
 };
 
-export default Invoices;
+export default Students;

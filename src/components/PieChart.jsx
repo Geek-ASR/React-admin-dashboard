@@ -1,11 +1,29 @@
 import { ResponsivePie } from "@nivo/pie";
 import { tokens } from "../theme";
 import { useTheme } from "@mui/material";
-import { mockPieData as data } from "../data/mockData";
 
-const PieChart = () => {
+// Mock data for instructors and students
+const mockInstructorData = [
+  { id: "Instructors", label: "Instructors", value: 10 },
+  { id: "Students", label: "Students", value: 90 },
+];
+
+// Mock data for course enrollment
+const mockCourseData = [
+  { id: "DSA", label: "CS101", value: 40 },
+  { id: "Blockchain", label: "CS102", value: 30 },
+  { id: "AI-ML", label: "CS103", value: 20 },
+  { id: "Cloud Computing", label: "CS104", value: 10 },
+];
+
+const PieChart = ({ type }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+
+  // Determine which data to use based on the type prop
+  const data = type === "instructors" ? mockInstructorData : mockCourseData;
+  
+
   return (
     <ResponsivePie
       data={data}
@@ -107,3 +125,32 @@ const PieChart = () => {
 };
 
 export default PieChart;
+
+
+
+// import { useEffect, useState } from "react";
+
+// ...
+
+// const PieChart = ({ type }) => {
+//   const [data, setData] = useState([]);
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       // Replace 'API_ENDPOINT' with your actual MongoDB API endpoint
+//       const response = await fetch("API_ENDPOINT");
+//       const result = await response.json();
+//       setData(result); // Update state with fetched data
+//     };
+
+//     fetchData();
+//   }, [type]); // Fetch new data when type changes
+
+//   // Use data directly from state
+//   return (
+//     <ResponsivePie
+//       data={data}
+//       // ... rest of your chart code
+//     />
+//   );
+// };
