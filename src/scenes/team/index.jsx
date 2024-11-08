@@ -16,7 +16,6 @@ const InstructorRequested = () => {
 
   // Getting the theme object first
   const theme = useTheme();
-  // Getting the colors based on the current theme mode
   const colors = tokens(theme.palette.mode);
 
   const handleOpen = (instructor) => {
@@ -29,7 +28,7 @@ const InstructorRequested = () => {
     setSelectedInstructor(null);
   };
 
-  // Mock data for instructors
+  // Mock data for instructors with paths to PDF resume and certificate
   const mockDataInstructorRequested = [
     {
       id: 1,
@@ -53,7 +52,9 @@ const InstructorRequested = () => {
       teachexp: "5 years",
       linkedin: "linkedin.com/in/johndoe",
       portfolio: "johndoeportfolio.com",
-      experience: "5 years", // Adding the experience here
+      experience: "5 years",
+      resume: "/Aditya Rekhe_Resume.pdf", // Updated path
+      certificate: "https://example.com/sample_certificate.pdf", // Sample PDF URL for certificate
     },
     {
       id: 2,
@@ -73,13 +74,92 @@ const InstructorRequested = () => {
       pinstitute: "DEF University",
       pyear: 2016,
       ppc: 9.2,
-      expertise: "AI",
+      expertise: "Artificial Intelligence",
       teachexp: "3 years",
-      linkedin: "linkedin.com/in/janesmith",
-      portfolio: "janesmithportfolio.com",
-      experience: "3 years", // Adding the experience here
+      linkedin: "https://linkedin.com/in/janesmith",
+      portfolio: "https://janesmithportfolio.com",
+      experience: "3 years",
+      resume: "/Aditya Rekhe_Resume.pdf", 
+      certificate: "https://example.com/sample_certificate.pdf",
     },
-    // Add more mock data as needed
+    {
+      id: 3,
+      name: "Michael Johnson",
+      gender: "Male",
+      dob: "1985-05-20",
+      phone: "555-123-4567",
+      email: "michaelj@example.com",
+      tenthpc: 89,
+      twelfthpc: 87,
+      diplomapc: null,
+      gdegree: "B.A. in History",
+      ginstitute: "State University",
+      gyear: 2006,
+      gpc: 8.0,
+      pdegree: "M.A. in History",
+      pinstitute: "State University",
+      pyear: 2008,
+      ppc: 8.2,
+      expertise: "Education",
+      teachexp: "10 years",
+      linkedin: "https://linkedin.com/in/michaeljohnson",
+      portfolio: "https://michaeljohnson.com",
+      experience: "10 years",
+      resume: "/Aditya Rekhe_Resume.pdf", 
+      certificate: "https://example.com/sample_certificate.pdf",
+    },
+    {
+      id: 4,
+      name: "Emily White",
+      gender: "Female",
+      dob: "1987-08-25",
+      phone: "555-555-5555",
+      email: "emilyw@example.com",
+      tenthpc: 92,
+      twelfthpc: 89,
+      diplomapc: null,
+      gdegree: "B.Sc. in Physics",
+      ginstitute: "DEF College",
+      gyear: 2008,
+      gpc: 8.8,
+      pdegree: "Ph.D. in Physics",
+      pinstitute: "XYZ Institute",
+      pyear: 2014,
+      ppc: 9.0,
+      expertise: "Physics",
+      teachexp: "6 years",
+      linkedin: "https://linkedin.com/in/emilywhite",
+      portfolio: "https://emilywhiteportfolio.com",
+      experience: "6 years",
+      resume: "/Aditya Rekhe_Resume.pdf", 
+      certificate: "https://example.com/sample_certificate.pdf",
+    },
+    {
+      id: 5,
+      name: "Robert Brown",
+      gender: "Male",
+      dob: "1991-11-01",
+      phone: "444-333-2222",
+      email: "robertb@example.com",
+      tenthpc: 80,
+      twelfthpc: 85,
+      diplomapc: 87,
+      gdegree: "B.Com",
+      ginstitute: "Commerce University",
+      gyear: 2011,
+      gpc: 7.9,
+      pdegree: "MBA",
+      pinstitute: "Business School",
+      pyear: 2014,
+      ppc: 8.1,
+      expertise: "Finance",
+      teachexp: "4 years",
+      linkedin: "https://linkedin.com/in/robertbrown",
+      portfolio: "https://robertbrown.com",
+      experience: "4 years",
+      resume: "/Aditya Rekhe_Resume.pdf",
+      certificate: "https://example.com/sample_certificate.pdf",
+    },
   ];
 
   const columns = [
@@ -87,7 +167,7 @@ const InstructorRequested = () => {
     { field: "phone", headerName: "Phone No.", width: 180 },
     { field: "email", headerName: "Email", width: 200 },
     { field: "expertise", headerName: "Expertise", width: 180 },
-    { field: "experience", headerName: "Experience", width: 180 }, // Adding Experience to the table
+    { field: "experience", headerName: "Experience", width: 180 },
     {
       field: "details",
       headerName: "Details",
@@ -113,18 +193,17 @@ const InstructorRequested = () => {
         sx={{
           "& .MuiDataGrid-root": { border: "none" },
           "& .MuiDataGrid-cell": { borderBottom: "none" },
-          // Use the colors object from the tokens function
-          "& .name-column--cell": { color: colors.greenAccent[300] }, // Color from tokens
+          "& .name-column--cell": { color: colors.greenAccent[300] },
           "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: colors.blueAccent[700], // Background color from tokens
+            backgroundColor: colors.blueAccent[700],
             borderBottom: "none",
           },
-          "& .MuiDataGrid-virtualScroller": { backgroundColor: colors.primary[400] }, // Virtual scroller background color from tokens
+          "& .MuiDataGrid-virtualScroller": { backgroundColor: colors.primary[400] },
           "& .MuiDataGrid-footerContainer": {
             borderTop: "none",
-            backgroundColor: colors.blueAccent[700], // Footer background color from tokens
+            backgroundColor: colors.blueAccent[700],
           },
-          "& .MuiCheckbox-root": { color: `${colors.greenAccent[200]} !important` }, // Checkbox color from tokens
+          "& .MuiCheckbox-root": { color: `${colors.greenAccent[200]} !important` },
         }}
       >
         <DataGrid checkboxSelection rows={mockDataInstructorRequested} columns={columns} />
@@ -143,9 +222,9 @@ const InstructorRequested = () => {
             p: 4,
             borderRadius: 2,
             opacity: 0.9,
-            border: `2px solid ${colors.blueAccent[500]}`, // Adding a border
-            boxShadow: `0px 4px 20px rgba(0, 0, 0, 0.2)`, // Adding a soft shadow for depth
-            backdropFilter: "blur(10px)", // Optional, adds a blur effect to the background
+            border: `2px solid ${colors.blueAccent[500]}`,
+            boxShadow: `0px 4px 20px rgba(0, 0, 0, 0.2)`,
+            backdropFilter: "blur(10px)",
           }}
         >
           {selectedInstructor && (
@@ -174,6 +253,8 @@ const InstructorRequested = () => {
               <Typography><strong>Teaching Experience:</strong> {selectedInstructor.teachexp}</Typography>
               <Typography><strong>LinkedIn:</strong> <a href={selectedInstructor.linkedin} target="_blank" rel="noopener noreferrer">{selectedInstructor.linkedin}</a></Typography>
               <Typography><strong>Portfolio:</strong> <a href={selectedInstructor.portfolio} target="_blank" rel="noopener noreferrer">{selectedInstructor.portfolio}</a></Typography>
+              <Typography><strong>Resume:</strong> <a href="/Aditya Rekhe_Resume.pdf" target="_blank" rel="noopener noreferrer">View Resume</a></Typography>
+              <Typography><strong>Certificate:</strong> <a href={selectedInstructor.certificate} target="_blank" rel="noopener noreferrer">View Certificate</a></Typography>
               
               <Box sx={{ mt: 2 }}>
                 <Button
