@@ -118,21 +118,21 @@ const Sidebar = ({ userName = "Admin: Aditya Rekhe" }) => {
             </Typography>
             <Item
               title="Student Details"
-              to="/team"
+              to="/studentdetails"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Instructor Details"
-              to="/contacts"
+              to="/instructordetails"
               icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Instructor Requested"
-              to="/invoices"
+              to="/instructorrequests"
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -150,14 +150,14 @@ const Sidebar = ({ userName = "Admin: Aditya Rekhe" }) => {
             />
             <Item
               title="Manage Courses"
-              to="/faq"
+              to="/coursess"
               icon={<VideoLibraryOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Manage Time Capsules"
-              to="/faq"
+              to="/coursess"
               icon={<HistoryToggleOffOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
